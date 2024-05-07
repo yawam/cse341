@@ -1,5 +1,6 @@
 const connectDB = require("../connect"); // Adjust the path as necessary
 const Contact = require("../models/contacts"); // Make sure the path to your model is correct
+const { ObjectId } = require("mongodb");
 
 async function getContacts(req, res) {
   const client = await connectDB();
@@ -28,10 +29,18 @@ async function getContactsById(req, res) {
   }
   try {
     const id = req.params.id;
+
+    // Convert string ID to ObjectId
+    if (!ObjectId.isValid(id)) {
+      res.status(400).json({ message: "Invalid ID format" });
+      return;
+    }
+    const objectId = new ObjectId(id);
+
     const contact = await client
       .db("contacts")
       .collection("contacts")
-      .findOne({ _id: id }); // Ensure you use ObjectId to convert the id string to an ObjectId
+      .findOne({ _id: objectId });
 
     if (!contact) {
       res.status(404).json({ message: "Contact not found" });
