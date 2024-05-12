@@ -1,8 +1,13 @@
 require("dotenv").config();
 const { MongoClient } = require("mongodb");
-
+const mongoose = require("mongoose");
 const uri = process.env.MONGODB_URI;
 // console.log(uri);
+
+mongoose
+  .connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => console.log("MongoDB connected"))
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 async function main() {
   const client = new MongoClient(uri);
@@ -31,6 +36,6 @@ async function listDatabases(client) {
   console.log("Databases:");
   databasesList.databases.forEach((db) => console.log(` - ${db.name}`));
 }
-main().catch(console.error);
+// main().catch(console.error);
 
 module.exports = connectDB;
