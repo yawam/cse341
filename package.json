@@ -5,7 +5,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start server": "node server.js",
-    "start app": "node server.js"
+    "start app": "node server.js",
+    "swagger-autogen": "node swagger.js",
+    "serve-swagger": "node swaggerDoc.js"
   },
   "author": "",
   "license": "ISC",
@@ -14,7 +16,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "mongodb": "^6.5.0",
-    "mongoose": "^8.3.3"
+    "mongoose": "^8.3.3",
+    "swagger-autogen": "^2.23.7",
+    "swagger-ui-express": "^5.0.0"
   },
   "description": ""
 }

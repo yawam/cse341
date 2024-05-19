@@ -41,6 +41,9 @@ async function getContactsById(req, res) {
 async function createContact(req, res) {
   try {
     const { firstName, lastName, email, favoriteColor, birthday } = req.body;
+    console.log(
+      `${firstName}, ${lastName}, ${email}, ${favoriteColor}, ${birthday}`
+    ); // Example output: `firstName, lastName, email, favoriteColor, birthday`);
 
     if (!firstName || !lastName || !email || !favoriteColor || !birthday) {
       res.status(400).send({ message: "All fields are required!" });
